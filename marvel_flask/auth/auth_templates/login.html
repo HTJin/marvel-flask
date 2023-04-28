@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mx-auto w-96">
+        <div class="card aspect-square mt-24 pb-12 rounded-md p-8 bg-gradient-to-r from-cyan-500 to-blue-500">
+            <h1 class="text-3xl mb-8">Welcome Back! 👋</h1>
+            {% include 'login_form.html' %}
+        </div>
+    </div>
+{% endblock content %}

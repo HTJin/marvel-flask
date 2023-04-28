@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="../static/css/normalize.css">
+    <link rel="icon" type="image/x-icon" href="../static/images/Marvel_Logo_RGB.png">
+    <title>Marvelous Characters</title>
+</head>
+
+<body class="prose font-sans bg-slate-800" style="font-size: 1.2em; color: azure; width: 100vw; margin-top: 2rem;">
+    <div class="flex justify-center">
+        <img class="w-96" src="../static/images/4-Marvel-logo-SVG-betterstudio.com_.svg" alt="Marvel Studios Logo">
+    </div>
+    <nav class="mt-4 flex justify-center divide-x">
+        <a class="pr-8 hover:underline underline-offset-8 hover:decoration-sky-500" href="{{ url_for('site.home') }}">Home</a>
+        {% if current_user.is_authenticated %}
+            <a class="px-8 hover:underline underline-offset-8 hover:decoration-sky-500" href="{{ url_for('auth.logout') }}">Logout</a>
+            <a class="pl-8 hover:underline underline-offset-8 hover:decoration-sky-500" href="{{ url_for('site.profile') }}">Profile</a>
+        {% else %}
+            <a class="px-8 hover:underline underline-offset-8 hover:decoration-sky-500" href="{{ url_for('auth.register') }}">Register</a>
+            <a class="pl-8 hover:underline underline-offset-8 hover:decoration-sky-500" href="{{ url_for('auth.login') }}">Login</a>
+        {% endif %}
+    </nav>
+    {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages %}
+            {% for cat, msg in messages %}
+                <div>
+                    {{ msg }}
+                    <button type="button" class="close" data-dismiss="alert" onclick="this.parentElement.style.display='none'">&times;</button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {% block content %}
+    {% endblock content %}
+
+</body>
+
+</html>
