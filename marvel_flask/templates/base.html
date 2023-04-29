@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="transition-all">
+<html lang="en" class="transition-all snap-mandatory snap-y flex flex-col items-center overflow-x-hidden overflow-y-auto scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -9,15 +9,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
+    <link href="https://fonts.cdnfonts.com/css/comic-book-commando" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../static/images/Marvel_Logo_RGB.png">
     <title>Marvelous Characters</title>
 </head>
 
-<body class="prose font-sans bg-slate-800" style="font-size: 1.2em; color: azure; width: 100vw; margin-top: 2rem;">
-    <div class="flex justify-center">
+<body class="prose font-sans bg-slate-800 flex flex-col items-center" style="font-size: 1.2em; color: azure; width: 100vw; margin-top: 2rem;">
+    <div class="flex justify-center sticky">
         <img class="w-96" src="../static/images/4-Marvel-logo-SVG-betterstudio.com_.svg" alt="Marvel Studios Logo">
     </div>
-    <nav class="mt-4 flex justify-center divide-x">
+    <nav class="mt-4 flex justify-center divide-x sticky">
         <a class="pr-8 hover:underline underline-offset-8 hover:decoration-sky-500" href="{{ url_for('site.home') }}">Home</a>
         {% if current_user.is_authenticated %}
             <a class="px-8 hover:underline underline-offset-8 hover:decoration-sky-500" href="{{ url_for('auth.logout') }}">Logout</a>
@@ -30,7 +31,7 @@
     {% with messages = get_flashed_messages(with_categories = true) %}
         {% if messages %}
             {% for cat, msg in messages %}
-                <div class="w-full flex justify-center items-center text-sm absolute mt-4">
+                <div class="w-full flex justify-center items-center text-sm absolute top-48">
                     {{ msg }}
                     <button type="button" style="width: 1em; height: 1em;" class="bg-red-700 hover:scale-110 rounded-full flex justify-center items-center ml-4" data-dismiss="alert" onclick="this.parentElement.style.display='none'">&times;</button>
                 </div>
@@ -40,7 +41,6 @@
 
     {% block content %}
     {% endblock content %}
-
 </body>
 
 </html>

@@ -1,7 +1,9 @@
 from flask import request, jsonify, json
 from functools import wraps
 from .models import User
-import secrets, decimal, requests
+from dotenv import load_dotenv
+import secrets, decimal, requests, os
+
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -30,16 +32,32 @@ def token_required(flask_function):
         return flask_function(our_user, *args, **kwargs)
     return decorated
 
-def get_quotes(character_name):
+def get_quotes(character_name, character_super_name):
     url = "https://marvel-quote-api.p.rapidapi.com/"
     headers = {
         "content-type": "application/octet-stream",
-        "X-RapidAPI-Key": "e0b666e2e7msh762a6c77e60fa0bp1ce753jsnb184064b4d35",
+        "X-RapidAPI-Key": os.getenv('X_RapidAPI_Key'),
         "X-RapidAPI-Host": "marvel-quote-api.p.rapidapi.com"
     }
     response = requests.request("GET", url, headers=headers)
     data = response.json()
-    if character_name == data['Speaker']:
+    if character_name.lower() == data['Speaker'] or character_super_name.lower() == data['Speaker']:
         return data['Quote']
     else:
         return data['Quote']+' I heard '+data['Speaker']+' from '+data['Title']+' say that.'
+
+def get_images(character_name, character_super_name):
+    response = requests.get(f"https://superheroapi.com/api/{os.getenv('API_KEY')}/search/{character_super_name}")
+    data = response.json()
+    if data['response'] == 'success':
+        for order, entry in enumerate(data['results']):
+            if entry['name'].lower() == character_super_name.lower():
+                return data['results'][order]['image']['url']
+    else: 
+        response = requests.get(f"https://superheroapi.com/api/{os.getenv('API_KEY')}/search/{character_name}")
+        data = response.json()
+        if data['response'] == 'success':
+            for order, entry in enumerate(data['results']):
+                if entry['name'].lower() == character_name.lower():
+                    return data['results'][order]['image']['url']
+    return '../static/images/Placeholder_couple_superhero.png'

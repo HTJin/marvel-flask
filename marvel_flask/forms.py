@@ -16,8 +16,9 @@ class RegisterForm(FlaskForm):
     
 class CharacterForm(FlaskForm):
     name = StringField('Name:', validators=[DataRequired()])
+    super_name = StringField('Super Name:', validators=[Optional()])
     description = TextAreaField('Description:', validators=[Optional()])
     comics = IntegerField('# of comic book appearance(s):')
-    power = StringField('Super Power:')
+    power = StringField('Super Power:', validators=[Optional()])
     quote = TextAreaField('Quote:', validators=[Optional()])
     submit = SubmitField()
