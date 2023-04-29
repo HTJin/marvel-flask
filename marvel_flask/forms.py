@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired, Email, Length, EqualTo
+from wtforms import StringField, PasswordField, TextAreaField, IntegerField, SubmitField
+from wtforms.validators import DataRequired, Email, Length, EqualTo, Optional
 
 class LoginForm(FlaskForm):
     email = StringField('Email:', validators=[DataRequired(), Email()])
@@ -12,4 +12,12 @@ class RegisterForm(FlaskForm):
     email = StringField('Email:', validators=[DataRequired(), Email()])
     password = PasswordField('Create password:', validators=[DataRequired(), EqualTo('confirm', message='passwords are not matching')])
     confirm = PasswordField('Confirm password:', validators=[DataRequired(), EqualTo('password', message='passwords are not matching')])
+    submit = SubmitField()
+    
+class CharacterForm(FlaskForm):
+    name = StringField('Name:', validators=[DataRequired()])
+    description = TextAreaField('Description:', validators=[Optional()])
+    comics = IntegerField('# of comic book appearance(s):')
+    power = StringField('Super Power:')
+    quote = TextAreaField('Quote:', validators=[Optional()])
     submit = SubmitField()

@@ -1,0 +1,26 @@
+<form method="post" class="grid grid-cols-2 gap-x-6 place-items-stretch mb-4">
+    {{ form.hidden_tag() }}
+    <div class="text-base w-80">
+        <fieldset id="name-field" class="flex flex-col items-center">
+            {{ form.name.label(class='self-start') }}
+            {{ form.name(class='p-3 block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 placeholder:italic placeholder:text-slate-900"', placeholder='Natasha Romanoff') }}
+        </fieldset>
+        <fieldset id="description-field" class="flex flex-col items-center">
+            {{ form.description.label(class='self-start') }}
+            {{ form.description(class='p-3 h-28 block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 placeholder:italic placeholder:text-slate-900"', placeholder='Despite super spy Natasha Romanova’s checkered past, she’s become one of S.H.I.E.L.D.’s most deadly assassins and a frequent member of the Avengers.') }}
+        </fieldset>
+        <fieldset id="comics-field" class="flex flex-col items-center">
+            {{ form.comics.label(class='self-start') }}
+            {{ form.comics(class='text-center p-3 block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 placeholder:italic placeholder:text-slate-900"', placeholder='19') }}
+        </fieldset>
+        <fieldset id="power-field" class="flex flex-col items-center">
+            {{ form.power.label(class='self-start') }}
+            {{ form.power(class='p-3 block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 placeholder:italic placeholder:text-slate-900"', placeholder='superhuman agility, espionage, slowed aging') }}
+        </fieldset>
+        <fieldset id="quote-field" class="flex flex-col items-center">
+            {{ form.quote.label(class='self-start') }}
+            {{ form.quote(class='p-3 h-28 block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 placeholder:italic placeholder:text-slate-900"', placeholder="I used to have nothing. Then I got this. This job… this family. And I was… I was better because of it. And even though… they're gone… I'm still trying to be better.") }}
+        </fieldset>
+    </div>
+    {{ form.submit(class='cursor-pointer rounded-full place-self-center bg-lime-50 text-emerald-900 font-bold text-3xl hover:transition-all duration-500 hover:bg-emerald-900 hover:text-lime-50 hover:ring-offset-2 hover:ring-4 hover:ring-lime-50', style='width: 6em; height: 6em;') }}
+</form>

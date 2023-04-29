@@ -46,16 +46,18 @@ class Character(db.Model):
     name = db.Column(db.String(150))
     description = db.Column(db.String(500), nullable=True)
     comics_appeared_in = db.Column(db.Integer)
-    super_power = db.Column(db.String(150))
+    super_power = db.Column(db.String)
+    quote = db.Column(db.String, nullable=True)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable=False)
     
-    def __init__(self, name, description, comics_appeared_in, super_power, user_token):
+    def __init__(self, name, description, comics_appeared_in, super_power, quote, user_token):
         self.id = self.set_id()
         self.name = name
         self.description = description
         self.comics_appeared_in = comics_appeared_in
         self.super_power = super_power
+        self.quote = quote
         self.user_token = user_token
         
     def set_id(self):
@@ -66,6 +68,6 @@ class Character(db.Model):
     
 class CharacterSchema(ma.Schema):
     class Meta:
-        fields = ['id', 'name', 'description', 'comics_appeared_in', 'super_power']
+        fields = ['id', 'name', 'description', 'comics_appeared_in', 'super_power', 'quote']
 character_schema = CharacterSchema()
 characters_schema = CharacterSchema(many=True)

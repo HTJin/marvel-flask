@@ -22,7 +22,7 @@ migrate = Migrate(app, root_db)
 
 ma.init_app(app)
 login_manager.init_app(app)
-login_manager.login_view = 'auth.signin'
+login_manager.login_view = 'auth.login'
 
 app.json_encoder = JSONEncoder
 

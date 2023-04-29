@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="snap-y">
+    <div class="snap-center container bg-emerald-900 rounded-lg mx-auto mt-48 flex flex-col justify-center" style="width: 900px; height: 600px; box-shadow: 0 0 0 .5em #fff, 0 0 0 1em #064E3B, 0 0 0 1.5em #fff, 0 0 0 4em #064E3B, 0 0 0 4.1em #000;">
+        <div class="px-6 py-24 sm:px-6 sm:py-32 lg:px-8 place-self-center">
+            <div class="mx-auto max-w-2xl text-center align-middle flex flex-col justify-center">
+                <h2 class="font-semibold leading-7 text-white">Create your own character!</h2>
+                <p class="mt-1 text-sm leading-6 text-gray-400">What will your characters say?</p>
+                {% include 'character_form.html' %}
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns-2 md:columns-3">
+            <div class="character-card snap-center">
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

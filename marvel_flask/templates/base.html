@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="transition-all">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link rel="stylesheet" href="../static/css/normalize.css">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
     <link rel="icon" type="image/x-icon" href="../static/images/Marvel_Logo_RGB.png">
     <title>Marvelous Characters</title>
 </head>
@@ -30,9 +30,9 @@
     {% with messages = get_flashed_messages(with_categories = true) %}
         {% if messages %}
             {% for cat, msg in messages %}
-                <div>
+                <div class="w-full flex justify-center items-center text-sm absolute mt-4">
                     {{ msg }}
-                    <button type="button" class="close" data-dismiss="alert" onclick="this.parentElement.style.display='none'">&times;</button>
+                    <button type="button" style="width: 1em; height: 1em;" class="bg-red-700 hover:scale-110 rounded-full flex justify-center items-center ml-4" data-dismiss="alert" onclick="this.parentElement.style.display='none'">&times;</button>
                 </div>
             {% endfor %}
         {% endif %}
