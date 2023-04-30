@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="snap-center container bg-emerald-900 rounded-lg mx-auto mt-48 flex flex-col justify-center animate__animated animate__fadeIn" style="width: 900px; height: 600px; box-shadow: 0 0 0 .5em #fff, 0 0 0 1em #064E3B, 0 0 0 1.5em #fff, 0 0 0 4em #064E3B, 0 0 0 4.1em #000;">
+    <div class="snap-center container bg-emerald-900 rounded-lg mx-auto mt-24 flex flex-col justify-center animate__animated animate__fadeIn" style="width: 900px; height: 600px; box-shadow: 0 0 0 .5em #fff, 0 0 0 1em #064E3B, 0 0 0 1.5em #fff, 0 0 0 4em #064E3B, 0 0 0 4.1em #000;">
         <div class="px-6 py-24 sm:px-6 sm:py-32 lg:px-8 place-self-center">
             <div class="mx-auto max-w-2xl text-center align-middle flex flex-col justify-center">
                 <h2 class="font-semibold leading-7 text-white">Create your own character!</h2>
@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <div class="container" style="position: relative; top: 70vh">
+    <div class="container transform scale-90" style="position: relative; top: 70vh">
         <div class="mx-auto grid grid-cols-1 gap-x-6 gap-y-20 sm:grid-cols-2 md:grid-cols-3 lg:mx-0 lg:max-w-none lg:gap-x-8 xl:col-span-2 mb-72">
             {% for character in characters %}
                 <div class="relative character-card snap-center p-7 border border-4 border-blue-900 rounded-3xl ring-4 ring-blue-600 ring-offset-4 ring-offset-indigo-800" id="character-cards">
