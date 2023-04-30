@@ -8,6 +8,7 @@ Marvel Flask is a web application built with Flask that allows users to register
 - Create custom Marvel characters
 - Retrieve character quotes and images
 - Delete character
+- (Edit character tbd)
 
 ## Installation and Setup
 
@@ -45,6 +46,10 @@ Replace `your_secret_key` with a secret key of your choice, `your_marvel_api_key
 `flask run`
 
 7. Visit `http://127.0.0.1:5000` in your web browser to view the Marvel Flask app.
+
+## API Used:
+1) Marvel-Quote-API - https://rapidapi.com/kyledeguzmanx/api/marvel-quote-api
+2) SuperHero API - https://superheroapi.com/
 
 ## Usage
 
