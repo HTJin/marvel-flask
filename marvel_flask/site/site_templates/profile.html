@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="snap-center container bg-emerald-900 rounded-lg mx-auto mt-48 flex flex-col justify-center" style="width: 900px; height: 600px; box-shadow: 0 0 0 .5em #fff, 0 0 0 1em #064E3B, 0 0 0 1.5em #fff, 0 0 0 4em #064E3B, 0 0 0 4.1em #000;">
+    <div class="snap-center container bg-emerald-900 rounded-lg mx-auto mt-48 flex flex-col justify-center animate__animated animate__fadeIn" style="width: 900px; height: 600px; box-shadow: 0 0 0 .5em #fff, 0 0 0 1em #064E3B, 0 0 0 1.5em #fff, 0 0 0 4em #064E3B, 0 0 0 4.1em #000;">
         <div class="px-6 py-24 sm:px-6 sm:py-32 lg:px-8 place-self-center">
             <div class="mx-auto max-w-2xl text-center align-middle flex flex-col justify-center">
                 <h2 class="font-semibold leading-7 text-white">Create your own character!</h2>
@@ -13,7 +13,7 @@
     <div class="container" style="position: relative; top: 70vh">
         <div class="mx-auto grid grid-cols-1 gap-x-6 gap-y-20 sm:grid-cols-2 md:grid-cols-3 lg:mx-0 lg:max-w-none lg:gap-x-8 xl:col-span-2 mb-72">
             {% for character in characters %}
-                <div class="relative character-card snap-center p-7 border border-4 border-blue-900 rounded-3xl ring-4 ring-blue-600 ring-offset-4 ring-offset-indigo-800">
+                <div class="relative character-card snap-center p-7 border border-4 border-blue-900 rounded-3xl ring-4 ring-blue-600 ring-offset-4 ring-offset-indigo-800" id="character-cards">
                     <div class="-mt-5 speech bg-gray-100 text-3xl rounded-3xl text-gray-900 transform translate-y-5 p-5 shadow-inner shadow-gray-700 z-50" style="font-family: 'Comic Book Commando', sans-serif;">{{ character.quote }}</div>
                     <span class="float-right relative w-10 h-10 bottom-0 right-20 transform -translate-y-15 rotate-45 bg-gray-100 z-10"></span>
                     <img src="{{ character.image }}" alt="{{ character.super_name }}" class="aspect-[3/2] w-full rounded-md object-cover z-0">
@@ -27,7 +27,17 @@
                         {% endfor %}
                     </ul>
                     <p class="mt-4 text-base leading-7 text-emerald-100">{{ character.description }}</p>
-                    <p class="mt-6 text-base text-orange-500 hover:text-cyan-400">Comic book appearance(s): {{ character.comics_appeared_in }}</p>
+                    <div class="mt-4 text-xs flex items-center w-full justify-between">
+                        <p class="mt-6 pb-1 self-start text-base text-orange-500 hover:text-cyan-400">Comic book appearance(s): {{ character.comics_appeared_in }}</p>
+                        <form action="/api/characters/{{ character.id }}/edit" method="post" class="self-end">
+                            <input type="hidden" name="token" value="{{ our_user.token }}">
+                            <input type="submit" disabled value="Edit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">
+                        </form>
+                        <form action="/api/characters/{{ character.id }}/remove" method="post" class="-ml-10 self-end">
+                            <input type="hidden" name="token" value="{{ our_user.token }}">
+                            <input type="submit" value="Remove" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded cursor-pointer">
+                        </form>                        
+                    </div>
                 </div>
             {% endfor %}
         </div>

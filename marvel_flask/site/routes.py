@@ -38,4 +38,4 @@ def profile():
     current_user_token = current_user.token
     characters = Character.query.filter_by(user_token=current_user_token)
     
-    return render_template('profile.html', form=my_character, characters=characters)
+    return render_template('profile.html', form=my_character, characters=characters, our_user=current_user)

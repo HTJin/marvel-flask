@@ -1,9 +1,7 @@
 from flask import request, jsonify, json
 from functools import wraps
 from .models import User
-from dotenv import load_dotenv
-import secrets, decimal, requests, os
-
+import secrets, decimal, requests, os, inspect
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -17,19 +15,22 @@ def token_required(flask_function):
         token = None
         if 'x-access-token' in request.headers:
             token = request.headers['x-access-token'].split()[1]
-            print(token)
+        elif 'token' in request.form:
+            token = request.form['token']
         if not token:
             return jsonify({'message': 'Token is missing'}), 401
         try:
             our_user = User.query.filter_by(token=token).first()
-            print(our_user)
             if not our_user or our_user.token != token:
                 return jsonify({'message': 'Token is invalid'}), 401
         except:
             our_user = User.query.filter_by(token=token).first()
             if token != our_user.token and secrets.compare_digest(token, our_user.token):
                 return jsonify({'message': 'Token is invalid'}), 401
-        return flask_function(our_user, *args, **kwargs)
+        if 'our_user' in inspect.signature(flask_function).parameters:
+            return flask_function(our_user, *args, **kwargs)
+        else:
+            return flask_function(*args, **kwargs)
     return decorated
 
 def get_quotes(character_name, character_super_name):
