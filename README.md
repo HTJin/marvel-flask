@@ -41,9 +41,9 @@ Replace `your_secret_key` with a secret key of your choice, `your_marvel_api_key
 
 6. Run the Flask app:
 
-flask run
+`flask run`
 
-7. Visit `http://localhost:5000` in your web browser to view the Marvel Flask app.
+7. Visit `http://127.0.0.1:5000` in your web browser to view the Marvel Flask app.
 
 ## Usage
 
