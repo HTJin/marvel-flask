@@ -1,1 +1,65 @@
-# marvel-flask
+# Marvel Flask
+
+Marvel Flask is a web application built with Flask that allows users to explore and manage their favorite Marvel characters. Users can register, log in, create their own characters, and retrieve quotes and images.
+
+## Features
+
+- User registration and authentication
+- Create custom Marvel characters
+- Retrieve character quotes and images
+
+## Installation and Setup
+
+1. Clone the repository:
+
+git clone https://github.com/HTJin/marvel-flask.git
+
+2. Navigate to the project directory:
+
+`cd marvel-flask`
+
+3. Create a virtual environment and activate it:
+
+python -m venv venv
+source venv/bin/activate  # For Linux and macOS
+venv\Scripts\activate     # For Windows
+
+4. Install the required packages:
+
+`pip install -r requirements.txt`
+
+5. Create a `.env` file in the root directory of the project and add the following environment variables:
+```
+FLASK_APP=marvel_flask
+FLASK_ENV=development
+SECRET_KEY=your_secret_key
+API_KEY=your_marvel_api_key
+DATABASE_URL=your_database_url
+```
+
+Replace `your_secret_key` with a secret key of your choice, `your_marvel_api_key` with your Marvel API key, and `your_database_url` with the URL of your database.
+
+6. Run the Flask app:
+
+flask run
+
+7. Visit `http://localhost:5000` in your web browser to view the Marvel Flask app.
+
+## Usage
+
+1. Register for an account or log in with an existing account.
+2. Create your own Marvel character with custom attributes.
+3. Retrieve quotes and images for your character.
+
+## Technologies
+
+- Flask
+- Jinja2
+- SQLAlchemy
+- Flask-WTF
+- Flask-Login
+- Flask-Migrate
+- Flask-RESTful
+- Flask-Marshmallow
+- Flask-CORS
+- Tailwind CSS
