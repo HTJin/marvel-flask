@@ -1,6 +1,6 @@
 # Marvel Flask
 
-Marvel Flask is a web application built with Flask that allows users to explore and manage their favorite Marvel characters. Users can register, log in, create their own characters, and retrieve quotes and images.
+Marvel Flask is a web application built with Flask that allows users to register, log in, create/delete their own characters with quotes and images.
 
 ## Features
 
