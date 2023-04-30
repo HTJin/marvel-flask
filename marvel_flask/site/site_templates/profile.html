@@ -23,7 +23,7 @@
                     <ul class="mt-6 flex gap-x-6">
                         Super Powers:
                         {% for power in character.super_power.split(', ') %}
-                        <li class="text-yellow-200 hover:text-red-500">{{power}}</li>
+                            <li class="text-yellow-200 hover:text-red-500">{{power}}</li>
                         {% endfor %}
                     </ul>
                     <p class="mt-4 text-base leading-7 text-emerald-100">{{ character.description }}</p>
