@@ -5,9 +5,9 @@ from ..forms import CharacterForm
 
 api = Blueprint('api', __name__, url_prefix='/api')
 
-@api.route('/characters', methods=['POST'])
+@api.route('/characters/<fire_token>', methods=['POST'])
 @token_required
-def create_character(our_user):
+def create_character(our_user, fire_token):
     name = request.json['name']
     super_name = request.json['super_name']
     description = request.json['description']
@@ -15,7 +15,7 @@ def create_character(our_user):
     super_power = request.json['super_power']
     quote = get_quotes(name, super_name)
     image = get_images(name, super_name)
-    user_token = our_user.token
+    user_token = fire_token
     character = Character(name, super_name, description, comics_appeared_in, super_power, quote, image, user_token=user_token)
     
     db.session.add(character)
@@ -32,15 +32,13 @@ def get_characters(our_user):
     response = characters_schema.dump(characters)
     return jsonify(response)
 
-@api.route('/characters/<id>', methods=['GET'])
+@api.route('/characters/<fire_token>', methods=['GET'])
 @token_required
-def get_character(id):
-    if id:
-        character = Character.query.get(id)
-        response = character_schema.dump(character)
-        return jsonify(response)
-    else:
-        return jsonify({'message': 'Valid ID Required'}), 401
+def get_character(fire_token):
+    owner = fire_token
+    character = Character.query.filter_by(user_token=owner).all()
+    response = character_schema.dump(character)
+    return jsonify(response)
  
 @api.route('/characters/<id>/edit', methods=['POST', 'PUT'])
 @token_required
@@ -62,7 +60,6 @@ def update_character(our_user, id):
     character.super_power = form.power.data
     character.quote = get_quotes(character.name, character.super_name)
     character.image = get_images(character.name, character.super_name)
-    character.user_token = our_user.token
 
     db.session.commit()
 
