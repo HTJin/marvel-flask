@@ -20,7 +20,6 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150), nullable=False)
     token = db.Column(db.String, default='', unique=True)
     join_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    character = db.relationship('Character', backref='owner', lazy=True)
     
     def __init__(self, username, email, password):
         self.id = self.set_id()
